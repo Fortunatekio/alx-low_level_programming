@@ -4,9 +4,10 @@
  * puzzlee, followed by a new line."
  * return: 0 (Success)
 */
-void main(int argc, char *argv[])
+int main(void);
 
-{
-puts("\"Programming is like building a multilingual puzzle");
-return (0);
-}
+ {
+puts("\"Programming is like building
+a multilingual puzzle");
+return(0);
+ }
