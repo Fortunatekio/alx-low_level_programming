@@ -7,7 +7,7 @@
  */
 int main(void)
 {
-    _putchar('abcdefghijklmnopqrstuvwxyz');
-    _putchar(',');
-    return (0);
+	_putchar('abcdefghijklmnopqrstuvwxyz');
+	_putchar(',');
+	return (0);
 }
