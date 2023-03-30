@@ -16,7 +16,7 @@ char *rot13(char *v)
 
 	for (b = 0; v[b] != '\0'; b++)
 	{
-		for (c = 0; b < 52; b++)
+		for (c = 0; c < 52; c++)
 		{
 			if (v[b] == data1[c])
 			{
