@@ -12,7 +12,7 @@
  */
 char *_strdup(char *str)
 {
-	char *aa;
+	char *qqq;
 	unsigned int p, m;
 
 	p = 0;
@@ -26,15 +26,15 @@ char *_strdup(char *str)
 	while (str[m])
 	{
 		m++;
-		aa = malloc(sizeof(char) * (p + 1));
+		qqq = malloc(sizeof(char) * (p + 1));
 	}
-	if (aa == NULL)
+	if (qqq == NULL)
 	{
 		return (NULL);
 	}
-	while ((aa[p] = str[p]) != '\0')
+	while ((qqq[p] = str[p]) != '\0')
 	{
 		p++;
 	}
-	return (aa);
+	return (qqq);
 }
