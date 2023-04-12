@@ -16,7 +16,7 @@ char *_strdup(char *str)
 	unsigned int p, m;
 
 	p = 0;
-	m = 0;
+	m = 1;
 
 
 	if (str == NULL)
