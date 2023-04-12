@@ -26,15 +26,17 @@ char *_strdup(char *str)
 	while (str[m])
 	{
 		m++;
-		qqq = malloc(sizeof(char) * (p + 1));
 	}
+		qqq = malloc(sizeof(char) * (p + 1));
 	if (qqq == NULL)
 	{
 		return (NULL);
 	}
-	while ((qqq[p] = str[p]) != '\0')
+	while (p < m)
 	{
+		qqq[p] = str[p];
 		p++;
 	}
+	qqq[p] = '\0';
 	return (qqq);
 }
