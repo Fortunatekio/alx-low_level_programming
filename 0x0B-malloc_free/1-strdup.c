@@ -12,31 +12,29 @@
  */
 char *_strdup(char *str)
 {
-	char *qqq;
-	unsigned int p, m;
+	char *r;
+	int b = 0, f = 1;
 
-	p = 0;
-	m = 1;
 
 
 	if (str == NULL)
 	{
 		return (NULL);
 	}
-	while (str[m])
+	while (str[f])
 	{
-		m++;
+		f++;
 	}
-		qqq = malloc(sizeof(char) * (p + 1));
-	if (qqq == NULL)
+		r = malloc((sizeof(char) * f) + 1);
+	if (r == NULL)
 	{
 		return (NULL);
 	}
-	while (p < m)
+	while (b < f)
 	{
-		qqq[p] = str[p];
-		p++;
+		r[b] = str[b];
+		b++;
 	}
-	qqq[p] = '\0';
-	return (qqq);
+	r[b] = '\0';
+	return (r);
 }
