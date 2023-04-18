@@ -3,18 +3,17 @@
 
 /**
  * _strlen - return the length of a string
- * @a: string to evaluate
+ * @s: string to evaluate
  * Return: the length of the string
  */
-int _strlen(char *a)
+int _strlen(char *s)
 {
 	int f;
 
 	f = 0;
 
-	while
+	while (s[f] != '\0')
 	{
-		(a[f] != '\0');
 		f++;
 	}
 	return (f);
@@ -31,12 +30,11 @@ char *_strcpy(char *dest, char *src)
 
 	red = 0;
 
-	while
+	while (src[red] != '\0')
 	{
-		(src[red] != '\0');
 		red++;
 	}
-	for (i = 0; i < len; i++)
+	for (f = 0; f < red; f++)
 	{
 		dest[f] = src[f];
 	}
