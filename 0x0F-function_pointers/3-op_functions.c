@@ -9,7 +9,7 @@ int op_mod(int a, int b);
  * op_add - returns the sum of 2 numbers
  * @a: first number
  * @b: second number
- * Return: returns the sun of a and b
+ * Return: returns the sum of a and b
  */
 int op_add(int a, int b)
 {
