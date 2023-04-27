@@ -2,7 +2,7 @@
 
 void first(void)__attribute__((constructor))
 /**
- * first - prints a sentence before the main
+ * first - prints a sentence before the main function is executed
  * first - function prototype before its definitin
  * __attribute__ - executes the same function as startup of the program
  * first - function that executes automatically before main
