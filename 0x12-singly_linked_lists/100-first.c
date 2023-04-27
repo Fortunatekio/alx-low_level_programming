@@ -1,13 +1,12 @@
 #include <stdio.h>
 
-void first(void)__attribute__((constructor))
 /**
  * first - prints a sentence before the main function is executed
- * first - function prototype before its definitin
- * __attribute__ - executes the same function as startup of the program
- * first - function that executes automatically before main
+ *
+ * Description: function that executes automatically before main and
+ * prints the message to the console
  */
-void first(void)
+void first(void)__attribute__((constructor))
 {
 	printf("You're beat! and yet, you must allow,\n");
 	printf("I bore my house upon my back!\n");
