@@ -112,9 +112,10 @@ void print_data(unsigned char *e_ident)
 }
 
 /**
- *  * print_version - Prints the version of an ELF header.
- *   * @e_ident: A pointer to an array containing the ELF version.
- *    */
+ * print_version - Prints the version of an ELF header.
+ * @e_ident: A pointer to an array containing the ELF version.
+ */
+
 void print_version(unsigned char *e_ident)
 {
 	 printf(" Version: %d",
@@ -276,20 +277,20 @@ Elf64_Ehdr *header;
 	int p, g;
 
 		p = open(argv[1], O_RDONLY);
-			if (p == -1)
+		if (p == -1)
 		{
 					dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
 							exit(98);
 								}
 	header = malloc(sizeof(Elf64_Ehdr));
-		if (header == NULL)
+	if (header == NULL)
 		{
 					close_elf(p);
 							dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
 									exit(98);
 										}
 	g = read(p, header, sizeof(Elf64_Ehdr));
-		if (g == -1)
+	if (g == -1)
 		{
 					free(header);
 							close_elf(p);
