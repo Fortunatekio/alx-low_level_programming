@@ -275,13 +275,13 @@ int main(int argc, char argv[])
 	if (argc != 2)
 	{
 		fprintf(stderr, "Usage: %s <filename>\n", argv[0]);
-		exit(1);
+		exit(98);
 	}
-	int fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
+	int p = open(argv[1], O_RDONLY);
+	if (p == -1)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
-		exit(1);
+		exit(98);
 	}
 
 	Elf64_Ehdr *header = malloc(sizeof(Elf64_Ehdr));
@@ -289,15 +289,15 @@ int main(int argc, char argv[])
 	{
 		close_elf(fd);
 		fprintf(stderr, "Error: Memory allocation failed\n");
-		exit(1);
+		exit(98);
 	}
 	ssize_t bytes_read = read(fd, header, sizeof(Elf64_Ehdr));
 	if (bytes_read == -1)
 	{
 		free(header);
-		close_elf(fd);
+		close_elf(p);
 		fprintf(stderr, "Error: Failed to read file %s\n", argv[1]);
-		exit(1);
+		exit(98);
 	}
 
 	check_elf(header->e_ident);
@@ -312,7 +312,7 @@ int main(int argc, char argv[])
 	print_entry(header->e_entry, header->e_ident);
 
 	free(header);
-	close_elf(fd);
+	close_elf(p);
 	return (0);
 }
 
