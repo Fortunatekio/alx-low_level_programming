@@ -270,35 +270,33 @@ void close_elf(int elf)
  * Description: If the file is not an ELF File or
  * the function fails - exit code 98.
  */
-int main(int argc, char argv[])
+int main(int __attribute__((__unused__)) argc, char *argv[])
 {
-	if (argc != 2)
-	{
-		fprintf(stderr, "Usage: %s <filename>\n", argv[0]);
-		exit(98);
-	}
-	int p = open(argv[1], O_RDONLY);
-	if (p == -1)
-	{
-		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
-		exit(98);
-	}
+Elf64_Ehdr *header;
+	int p, g;
 
-	Elf64_Ehdr *header = malloc(sizeof(Elf64_Ehdr));
-	if (header == NULL)
-	{
-		close_elf(fd);
-		fprintf(stderr, "Error: Memory allocation failed\n");
-		exit(98);
-	}
-	ssize_t bytes_read = read(fd, header, sizeof(Elf64_Ehdr));
-	if (bytes_read == -1)
-	{
-		free(header);
-		close_elf(p);
-		fprintf(stderr, "Error: Failed to read file %s\n", argv[1]);
-		exit(98);
-	}
+		p = open(argv[1], O_RDONLY);
+			if (p == -1)
+		{
+					dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
+							exit(98);
+								}
+	header = malloc(sizeof(Elf64_Ehdr));
+		if (header == NULL)
+		{
+					close_elf(p);
+							dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
+									exit(98);
+										}
+	g = read(p, header, sizeof(Elf64_Ehdr));
+		if (g == -1)
+		{
+					free(header);
+							close_elf(p);
+									dprintf(STDERR_FILENO, "Error: `%s`: No such file\n", argv[1]);
+											exit(98);
+												}
+
 
 	check_elf(header->e_ident);
 	printf("ELF Header:\n");
