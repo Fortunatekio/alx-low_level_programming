@@ -16,6 +16,7 @@ void print_osabi(unsigned char *e_ident);
 void print_type(unsigned int e_type, unsigned char *e_ident);
 void print_entry(unsigned long int e_entry, unsigned char *e_ident);
 void close_elf(int elf);
+int main(int __attribute__((__unused__)) argc, char *argv[]);
 
 /**
  * check_elf - Checks if a file is an ELF file.
@@ -273,30 +274,31 @@ void close_elf(int elf)
  */
 int main(int __attribute__((__unused__)) argc, char *argv[])
 {
-Elf64_Ehdr *header;
+	Elf64_Ehdr *header;
 	int p, g;
 
-		p = open(argv[1], O_RDONLY);
-		if (p == -1)
-		{
-					dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
-							exit(98);
-								}
+	p = open(argv[1], O_RDONLY);
+	if (p == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
+		exit(98);
+	}
+
 	header = malloc(sizeof(Elf64_Ehdr));
 	if (header == NULL)
 		{
-					close_elf(p);
-							dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
-									exit(98);
-										}
+			close_elf(p);
+			dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
+			exit(98);
+		}
 	g = read(p, header, sizeof(Elf64_Ehdr));
 	if (g == -1)
 		{
-					free(header);
-							close_elf(p);
-									dprintf(STDERR_FILENO, "Error: `%s`: No such file\n", argv[1]);
-											exit(98);
-												}
+			free(header);
+			close_elf(p);
+			dprintf(STDERR_FILENO, "Error: `%s`: No such file\n", argv[1]);
+			exit(98);
+		}
 
 
 	check_elf(header->e_ident);
