@@ -275,10 +275,10 @@ void close_elf(int elf)
 int main(int __attribute__((__unused__)) argc, char *argv[])
 {
 	Elf64_Ehdr *header;
-	int o, r;
+	int part, g;
 
-	o = open(argv[1], O_RDONLY);
-	if (o == -1)
+	part = open(argv[1], O_RDONLY);
+	if (part == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
 		exit(98);
@@ -287,15 +287,15 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	header = malloc(sizeof(Elf64_Ehdr));
 	if (header == NULL)
 		{
-			close_elf(o);
+			close_elf(part);
 			dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
 			exit(98);
 		}
-	r = read(p, header, sizeof(Elf64_Ehdr));
-	if (r == -1)
+	g = read(part, header, sizeof(Elf64_Ehdr));
+	if (g == -1)
 		{
 			free(header);
-			close_elf(o);
+			close_elf(part);
 			dprintf(STDERR_FILENO, "Error: `%s`: No such file\n", argv[1]);
 			exit(98);
 		}
@@ -313,7 +313,7 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	print_entry(header->e_entry, header->e_ident);
 
 	free(header);
-	close_elf(o);
+	close_elf(part);
 	return (0);
 }
 
