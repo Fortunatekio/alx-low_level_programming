@@ -74,8 +74,7 @@ int main(int argc, char *argv[])
 		}
 		g = read(part, buffer, 1024);
 		pot = open(argv[2], O_WRONLY | O_APPEND);
-	}
-	while (g > 0);
+	} while (g > 0);
 	free(buffer);
 	close_file(part);
 	close_file(pot);
