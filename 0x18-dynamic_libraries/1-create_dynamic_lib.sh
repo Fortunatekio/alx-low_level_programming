@@ -1,3 +1,3 @@
-gcc -Wall -Werror -fpic -c *.c
+#!/bin/bash
+gcc -fPIC -c *.c
 gcc -shared -o liball.so *.o
-rm *.o
